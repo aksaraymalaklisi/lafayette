@@ -13,7 +13,7 @@ GRANT ALL PRIVILEGES ON test.* to django_user@localhost;
 FLUSH PRIVILEGES; -- Não é obrigatório. GRANT já dá FLUSH.
 ```
 
-O professor decidiu dar acesso diretamente ao root para isso, mas Django não requer isso.
+O professor decidiu dar acesso diretamente ao root para isso (e pela interface do MySQL Workbench), mas Django não requer isso.
 
 ### Inicie a venv
 
