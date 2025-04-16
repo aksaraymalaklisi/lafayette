@@ -10,7 +10,8 @@ Assets do Vite foram removidos já que não utilizados, sendo o diretório `publ
 É preciso instalar a aplicação dessa aula para ela funcionar corretamente.
 
 #### Clone o repositório
-- Abra o terminal do sistema ou o terminal do VS Code (CTRL + J) e clone o repositório
+Abra o terminal do sistema ou o terminal do VS Code (CTRL + J) e clone o repositório
+
 `git clone https://github.com/aksaraymalaklisi/aula_150425.git`
 
 #### Acesse o diretório da aplicação
