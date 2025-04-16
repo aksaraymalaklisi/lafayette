@@ -6,7 +6,7 @@ Todas as modificações podem ser encontradas nos comentários do código.
 Esse site foi estilizado, apesar de conter arquivos de estilo.
 Assets do Vite foram removidos já que não utilizados, sendo o diretório `public` e o subdiretório `assets`.
 
-### Instalação da aplicação React
+## Instalação
 É preciso instalar a aplicação dessa aula para ela funcionar corretamente.
 
 #### Clone o repositório
