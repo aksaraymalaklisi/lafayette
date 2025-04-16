@@ -168,7 +168,7 @@ RIGHT JOIN pedidos p ON clientes.id = pedidos.cliente_id;
 -- DROP TABLE
 -- DROP DATABASE
 -- SELECT, WHERE, FUNÇÕES (?)
-
+-- MAX, MIN, COUNT, AVG, SUM
 -- DELETE
 -- LIMIT
 -- BETWEEN
