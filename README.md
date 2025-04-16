@@ -1,3 +1,6 @@
+# Aviso
+**Se você quer apenas rodar o código acima, siga as [notas simples](https://github.com/aksaraymalaklisi/aula_080425/blob/main/old/notas_simples.md).**
+
 # Aula do dia 08/04/2025
 
 ### Crie um usuário para o Django no MySQL Workbench
