@@ -3,7 +3,7 @@
 ## Notas
 **Você deve configurar o backend visto na [aula anterior](https://github.com/aksaraymalaklisi/aula_080425).**
 Todas as modificações podem ser encontradas nos comentários do código.
-Esse site foi estilizado, apesar de conter arquivos de estilo.
+Esse site **não foi estilizado**, apesar de conter arquivos de estilo.
 Assets do Vite foram removidos já que não utilizados, sendo o diretório `public` e o subdiretório `assets`.
 
 ## Instalação
