@@ -30,6 +30,14 @@ venv/
 pip-log.txt
 pip-delete-this.txt
 
+# Django
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+migrations/
+*.log
+
 # IDEs and Editors
 .idea/
 .vscode/
@@ -58,5 +66,4 @@ sdist/
 *.egg-info/
 
 # Miscelânea
-
 uvicorntest.pytemp
