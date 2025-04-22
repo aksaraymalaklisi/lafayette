@@ -41,4 +41,3 @@ Após seguir essas etapas, você pode acessar a página do Django REST Framework
 - A primeira opção no JSON será "produtos". Acesse o link no valor para testar o endpoint.
 
 - Daí, é possível criar POST requests para API (adicionar produtos, nesse caso). 
-
