@@ -31,6 +31,12 @@ const ProductInfo = styled.span`
   flex-grow: 1;
 `;
 
+const Image = styled.img`
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 16px;
+`;
+
 const EditButton = styled(Link)`
   background-color: #007bff;
   color: white;
@@ -75,7 +81,8 @@ function ProdutoList(){
           {error && <ErrorMessage>{error}</ErrorMessage>}
                 {produtos.map(prod=>(
                     <ProductItem key={prod.id}> 
-                        <ProductInfo> {prod.nome} | Preço: {prod.preco} | Estoque: {prod.estoque} </ProductInfo>
+                        <Image src={prod.imagem} alt="Imagem do Produto" />
+                        <ProductInfo> {prod.nome} <br/> Preço: R$ {prod.preco} <br/> Estoque: {prod.estoque} un. </ProductInfo>
                         <EditButton to={`/editar/${prod.id}`}>Editar</EditButton> 
                     </ProductItem>
                 ))}
