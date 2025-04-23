@@ -1,19 +1,28 @@
-# Aula do dia 08/04/2025
+# README do repositório da aula do dia 08/04/2025
 
 ### Crie um usuário para o Django no MySQL Workbench
 
 Em um Query, insira a seguinte entrada:
 
 ```
-CREATE DATABASE test;
+CREATE DATABASE lafayette;
 
 CREATE USER 'django_user'@'localhost' IDENTIFIED BY 'senha_segura';
-GRANT ALL PRIVILEGES ON test.* to django_user@localhost;
+GRANT ALL PRIVILEGES ON lafayette.* to django_user@localhost;
 
 FLUSH PRIVILEGES; -- Não é obrigatório. GRANT já dá FLUSH.
 ```
 
-O professor decidiu dar acesso diretamente ao root para isso (e pela interface do MySQL Workbench), mas Django não requer isso.
+### Crie o arquivo .env
+A estrutura da .env é a seguinte:
+
+```
+DB_NAME = "lafayette"
+DB_USER = "django_user"
+DB_PASSWORD = "senha_segura"
+DB_HOST = "localhost"
+DB_PORT = "3306"
+```
 
 ### Inicie a venv
 
