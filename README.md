@@ -1,6 +1,6 @@
 # Página de Produtos
 
-**Essa é versão armazena e carrega imagens.**
+**Essa versão armazena e carrega imagens.**
 
 Foram utilizados os arquivos das aulas do dia 08 e do dia 15.
 
