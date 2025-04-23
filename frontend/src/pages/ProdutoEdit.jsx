@@ -11,6 +11,18 @@ const Container = styled.div`
   gap: 16px;
 `;
 
+const ImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+`
+
+const Image = styled.img`
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 16px;
+`
+
 const MessageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -114,8 +126,9 @@ const ButtonGroup = styled.div`
 
 const ProdutoEdit = () => {
     const { id } = useParams();
-    const [produto, setProduto] = useState({ nome: "", preco: "", estoque: "" });
-    const { nome, preco, estoque } = produto;
+    const [produto, setProduto] = useState({ nome: "", preco: "", estoque: "", imagem: null });
+    const { nome, preco, estoque, imagem } = produto;
+    const [previewImagemURL, setPreviewImagemURL] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [state, setState] = useState(false); // Tecnicamente, state é só um nome genérico, mas aqui ele é apenas chamado quando o produto é apagado.
@@ -128,6 +141,9 @@ const ProdutoEdit = () => {
             try {
                 const response = await getProduto(id);
                 setProduto(response.data);
+                if (response.data.imagem) {
+                  setPreviewImagemURL(response.data.imagem);
+                }
                 setLoading(false);
             } catch (error) {
                 console.error("Erro ao buscar produto:", error);
@@ -153,13 +169,28 @@ const ProdutoEdit = () => {
         setProduto({ ...produto, [e.target.id]: e.target.value }) // e.target.id é o id do input no form
     } 
 
+    const handleImageChange = (e) => {
+      if (e.target.files && e.target.files[0]) { // Mesma coisa que acima, mas quero colocar algumas condições.
+        const imagemSelecionada = e.target.files[0];
+        setProduto({ ...produto, imagem: imagemSelecionada });
+        setPreviewImagemURL(URL.createObjectURL(imagemSelecionada));
+      } else {
+        setPreviewImagemURL(null);
+      }
+    };
+
     const handleSubmit = async (e) => { // E também descobri que tenho que melhorar minhas nomenclaturas
         e.preventDefault();
         try {
-            const updatedProduto = {nome, preco, estoque};
-            console.log(updatedProduto)
-            await updateProduto(id, updatedProduto);
-            setMessage("Produto atualizado.");
+          const formData = new FormData();
+          formData.append("nome", nome);
+          formData.append("preco", preco);
+          formData.append("estoque", estoque);
+          if (imagem) {
+            formData.append("imagem", imagem);
+          }
+          await updateProduto(id, formData);
+          setMessage("Produto atualizado.");
         } catch (error) {
             console.error("Erro ao atualizar produto:", error);
             setError("Erro ao atualizar produto: " + error.message);
@@ -180,13 +211,20 @@ const ProdutoEdit = () => {
             ) : (
             <div> 
                 <Form onSubmit={handleSubmit}>
-                    <Label htmlFor="nome">Nome do produto:</Label>
-                    <Input type="text" id="nome" value={produto.nome} onChange={handleChange} />
-                    <Label htmlFor="preco">Preço:</Label>
-                    <Input type="text" id="preco" value={produto.preco} onChange={handleChange} />
-                    <Label htmlFor="estoque">Estoque:</Label>
-                    <Input type="text" id="estoque" value={produto.estoque} onChange={handleChange} />
-                    <Button type="submit">Salvar</Button>
+                  {(previewImagemURL || produto.imagem) && (
+                    <ImageContainer>
+                      <Label>Imagem {previewImagemURL ? 'Selecionada' : 'Atual'}:</Label>
+                      <Image src={previewImagemURL || produto.imagem} alt="Imagem do Produto" />
+                    </ImageContainer>
+                  )}
+                  <Label htmlFor="nome">Nome do produto:</Label>
+                  <Input type="text" id="nome" value={produto.nome} onChange={handleChange} />
+                  <Label htmlFor="preco">Preço:</Label>
+                  <Input type="text" id="preco" value={produto.preco} onChange={handleChange} />
+                  <Label htmlFor="estoque">Estoque:</Label>
+                  <Input type="text" id="estoque" value={produto.estoque} onChange={handleChange} />
+                  <Input type="file" id="imagem" accept="image/*" onChange={handleImageChange} />
+                  <Button type="submit">Salvar</Button>
                 </Form>
                 <ButtonGroup>
                     <Button type="button" onClick={() => navigate(-1)}>Voltar</Button>

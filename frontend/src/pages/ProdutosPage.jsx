@@ -18,6 +18,9 @@ const Title = styled.h1`
 `;
 
 const DropdownContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 20px;
 `;
 
