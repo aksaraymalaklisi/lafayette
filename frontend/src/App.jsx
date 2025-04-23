@@ -1,13 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link} from 'react-router';
+import { BrowserRouter as Router, Routes, Route} from 'react-router';
 import styled from 'styled-components';
 import ProdutosPage from './pages/ProdutosPage';
 import ProdutoEdit from './pages/ProdutoEdit';
 
-
 const PageContainer = styled.div`
       font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
-      padding: 24px;
 `;
 
 function App() {
