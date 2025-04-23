@@ -1,28 +1,37 @@
 import React, { useState, useEffect} from "react";
-import api from "../services/api";
+import styled from "styled-components";
+import { Link } from "react-router";
+import { listProdutos, deleteProduto } from "../services/api";
 
+const EditButton = styled(Link)`
+    
+`
 function ProdutoList(){
     const [produtos, setProdutos] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    useEffect(()=>{
-        api.get('produtos')
-        .then(response=>{
-            console.log(response.data); // Modificação: teste da api
+    // o useEffect agora chama a função getProdutos. Muito mais prático.
+    useEffect(() => {
+        getProdutos();
+    }, []);
+
+    // Ao invés de colocar a geração da lista como parte do useEffect, ela foi movida para uma função separada.
+    const getProdutos = async () => {
+        try {
+            const response = await listProdutos();
             setProdutos(response.data);
             setLoading(false);
-        })
-        .catch(error => {
+        } catch(error) {
             console.error('Erro ao buscar produtos: ', error);
-            setLoading(false);
-        });
-    }, []);
+        }
+    };
+
     if (loading) return (<p>Carregando produtos...</p>);
         
     return(
         <ul>
             {produtos.map(prod=>(
-                <li key={prod.id}>{prod.nome}</li>
+                <li key={prod.id}>{prod.nome} | Preço: {prod.preco} | Estoque: {prod.estoque} | <EditButton to={`/editar/${prod.id}`}>Editar</EditButton> </li>
             ))}
         </ul>
     );

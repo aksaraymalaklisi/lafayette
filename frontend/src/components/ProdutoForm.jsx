@@ -1,10 +1,7 @@
-// Esse arquivo está modificado do original: ele adiciona dois novos inputs pois a API REQUER que todos os campos sejam preenchidos
-// Os campos são: nome, estoque e preco.
-
 import React, { useState} from "react";
-import api from "../services/api";
+import { createProduto } from "../services/api";
 
-const ProdutoForm = ({ onProdutoAdicionado })=>{
+const ProdutoForm = ({ onProdutoAdicionado })=> {
     const [nome, setNome] = useState('');
     const [estoque, setEstoque] = useState(''); // Modificação: estoque is required
     const [preco, setPreco] = useState(''); // Modificação: preco is required
@@ -12,8 +9,8 @@ const ProdutoForm = ({ onProdutoAdicionado })=>{
     const handleSubmit = (e)=>{
         e.preventDefault();
 
-        api.post('produtos/', {nome, estoque, preco}) // Modificação: estoque & preco is required
-        .then(response =>{
+        createProduto({nome, estoque, preco}) // Modificação: estoque & preco is required | Atualizar para o novo serviço
+        .then(() =>{ // response foi removido porque eu não faço ideia do que aquilo era para fazer
             onProdutoAdicionado();
             setNome('');
             setEstoque(''); /* Modificação: estoque is required */
