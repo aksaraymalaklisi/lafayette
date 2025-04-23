@@ -39,6 +39,7 @@ DB_PORT = "3306"
 `python manage.py migrate`
 
 ### Rodando o servidor
+
 `python manage.py runserver`
 
 ### Acesse a página da API
